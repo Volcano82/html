@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+<script>
+    function test(elementtd) {
+          console.log(elementtd.id);
+          elementtd.style.backgroundColor = "#392d3d"; 
+
+    }
+
+
+    PixelSize = "25px";
+    PixelNumber = 0 ;
+    function tableCreate() {
+    var body = document.getElementsByTagName('body')[0];
+    var tbl = document.createElement('table');
+   // tbl.style.width = '480px';
+    tbl.setAttribute('border', '1px solid black');
+    tbl.setAttribute('border-collapse', 'collapse');
+    var tbdy = document.createElement('tbody');
+    for (var i = 0; i < 16; i++) {
+        var tr = document.createElement('tr');
+           // tr.style.width = PixelSize;
+            //tr.style.height = PixelSize;
+        for (var j = 0; j < 16; j++) {
+            var td = document.createElement('td');
+            td.style.width = PixelSize;
+            td.style.height = PixelSize;
+            td.style.backgroundColor = "#000000";
+            td.id = PixelNumber;
+            //td.onmousedown = function() { test(this);    };
+
+            td.addEventListener('mousemove', function(event) {
+                if(event.buttons == 1) {
+                event.preventDefault();
+
+                test(this); 
+
+                }
+            });
+            tr.appendChild(td);
+            PixelNumber++;
+        }
+        tbdy.appendChild(tr);
+    }
+    tbl.appendChild(tbdy);
+    body.appendChild(tbl)
+    }
+</script>
+
+</head>
+<body><center>
+
+
+<script>    tableCreate();
+</script>
+</center>
+
+</body>
+</html>
